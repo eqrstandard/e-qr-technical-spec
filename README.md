@@ -31,6 +31,8 @@ The specification is developed and stewarded by **e-QR Payment Standard MTÜ**
 
 /spec/e-QR_Technical_Spec_v0.1.pdf
 
+/spec/e-QR_Signed_URL_Carrier_Profile_v0.1.md — draft addendum: the camera-scannable signed-link carrier used in the pilot
+
 
 ## Feedback
 
