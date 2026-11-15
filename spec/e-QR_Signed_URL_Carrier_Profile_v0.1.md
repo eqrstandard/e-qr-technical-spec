@@ -37,7 +37,7 @@ Name and IBAN are signed into the code. A change of either therefore needs a new
 
 ## 4. What a verifier does
 
-1. Fetch the Operator Directory from `https://eqrstandard.com/.well-known/eqr/operators.json`; verify `sig.jws` with the Association's pinned directory key; reject if past `valid_until`. Refresh at least every 24 hours (Spec s. 10).
+1. Fetch the Operator Directory from `https://registry.eqrstandard.com/.well-known/eqr/operators.json`; verify `sig.jws` with the Association's pinned directory key; reject if past `valid_until`. Refresh at least every 24 hours (Spec s. 10).
 2. Take the OPID from the MID; find that operator with `status: active`; check that the code's host is in its `hosts`.
 3. Check that the JWS `kid` is one of that operator's `signing_keys`, verify the signature, check `mid` against the path and `exp` against the clock.
 4. Fetch the operator's revocation list (s. 5) at most once a day; refuse a listed MID.
