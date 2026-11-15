@@ -5,7 +5,19 @@ All notable changes to the technical specification are documented in this file.
 The format follows a simplified variant of Keep a Changelog and uses semantic versioning
 adapted for specification drafts.
 
-## [Unreleased] — addendum to v0.1 (draft, 2026-11-14)
+## Signed-URL Carrier Profile v0.2 — addendum to v0.1 (2026-11-15)
+
+### Changed
+- The signed link now uses the address structure of the specification, section 7.1: `https://<host>/1/m/<OPID>?pi=…&instr=…&mid=…&sig=…`.
+- The signed part carries the version (`ver`) and the payment method (`instr`); a verifier refuses a version or method it does not implement.
+- Claim names follow the specification: `amt` (minor units), `ccy`, `rmt`, `ref`.
+- Payment methods are listed in the Profile; the first and only one is `SCTI`.
+- Codes issued under v0.1 stay valid and are read as version 1, method `SCTI`.
+
+### To be folded into v0.2 of the specification
+- Reconcile section 7.4 (no account details in a point-of-sale code) with the signed part of the Profile.
+
+## Signed-URL Carrier Profile v0.1 — addendum to v0.1 (2026-11-14, replaced)
 
 ### Added
 - Signed-URL Carrier Profile v0.1 (`spec/e-QR_Signed_URL_Carrier_Profile_v0.1.md`): a camera-scannable https link
