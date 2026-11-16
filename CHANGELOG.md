@@ -5,6 +5,16 @@ All notable changes to the technical specification are documented in this file.
 The format follows a simplified variant of Keep a Changelog and uses semantic versioning
 adapted for specification drafts.
 
+## Signed-URL Carrier Profile v0.3 — addendum to v0.1 (2026-11-16)
+
+### Changed
+- Every code uses the scheme's payer host, listed in the Directory's `payer_hosts`; today `pay.eqrstandard.com`. Operators no longer put a host of their own in a code, so a payer sees the same page whichever operator onboarded the merchant.
+- The signed Operator Directory moves to `https://eqrstandard.com/.well-known/eqr/operators.json` and is signed with the Association's directory key, which no operator holds.
+- Each operator lists one `registry` base address; its keys, revocation list, resolver and scan-count endpoints sit under it. The payer host forwards resolver calls to the operator named in the code.
+
+### Removed
+- Codes in the forms of v0.1 and v0.2. None were issued to merchants in the field.
+
 ## Signed-URL Carrier Profile v0.2 — addendum to v0.1 (2026-11-15)
 
 ### Changed

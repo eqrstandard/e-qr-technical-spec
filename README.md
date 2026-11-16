@@ -31,9 +31,10 @@ The specification is developed and stewarded by **e-QR Payment Standard MTÜ**
 
 /spec/e-QR_Technical_Spec_v0.1.pdf
 
-/spec/e-QR_Signed_URL_Carrier_Profile_v0.2.md — addendum: the camera-scannable signed link, in the address structure of the specification, with version and payment method in the signed part
+/spec/e-QR_Signed_URL_Carrier_Profile_v0.3.md — addendum: the camera-scannable signed link on the scheme payer host pay.eqrstandard.com, verified against the Operator Directory on eqrstandard.com
+/spec/e-QR_Signed_URL_Carrier_Profile_v0.2.md — replaced by v0.3
 
-/spec/e-QR_Signed_URL_Carrier_Profile_v0.1.md — replaced by v0.2; the code format of the pilot, whose codes stay valid
+/spec/e-QR_Signed_URL_Carrier_Profile_v0.1.md — replaced; the code format of the pilot
 
 
 ## Feedback
