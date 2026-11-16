@@ -2,11 +2,14 @@
 
 Adopted by the board of e-QR Payment Standard MTÜ (registry code 80666291) on 16 November 2026 as an addendum to the e-QR Technical Specification v0.1. It replaces version 0.2. References to Carrier Profile v0.1 or v0.2 in the Scheme Rules v0.1 and the Certification Criteria v0.1 are read as references to this version.
 
-This Profile defines the code a payer scans with a phone camera: an https link that carries the operator's signature and verifies itself in the browser. Version 0.3 moves every code to one payer page run for the whole scheme, so a payer sees the same page whichever certified operator onboarded the merchant, and places the Operator Directory on the Association's own domain.
+This Profile defines the e-QR code on a merchant's sticker or invoice: an https link that carries the operator's signature. The aim of the scheme is that the payer's own payment service provider (PSP) reads the code in its app, verifies it and prefills the transfer. Until a payer's PSP does that, the link opens the scheme's payer page in the browser, which verifies the code and hands the payment to the payer's PSP. Version 0.3 makes that payer page one page for the whole scheme, the same whichever certified operator onboarded the merchant, and places the Operator Directory on the Association's own domain.
 
 ## 1. One code, two readers
 
-Opened by a phone camera, the code shows the scheme's payer page, which verifies the operator's signature with no registry call for the payment. Read by an application that implements Specification v0.1, it is a proxy-mode code (Spec s. 8.2) and is resolved as Spec s. 9 describes (s. 7).
+- **A PSP's own app**, the target reader. The app scans the code, verifies the operator's signature against the Directory as s. 8 describes, and prefills the transfer in its own interface; the payer never leaves the app and the payer page is not opened. An app that implements Specification v0.1 may instead treat the code as a proxy-mode code (Spec s. 8.2) and resolve it with the operator (Spec s. 9, s. 7 of this Profile).
+- **The phone camera**, the bridge. Where the payer's PSP does not read e-QR codes yet, the camera opens the link and the scheme's payer page verifies the code with no registry call and hands the payment to the payer's PSP (s. 9).
+
+The same printed code serves both, so a merchant never reprints when PSPs add support.
 
 ## 2. Identifiers
 
@@ -97,11 +100,11 @@ A payer host answers a resolver call at the code's own address by forwarding it 
 5. Check `ver`, `instr` and `mid` in the signed part against the path and the query; refuse the code if any differs. Check `exp` against the clock.
 6. If the version or the method is not one the verifier implements, tell the payer the code needs a newer application and offer no payment.
 7. Fetch that operator's revocation list at most once an hour; refuse a listed MID.
-8. Show the signed `name`, the tail of the account, the amount, the payment method and the operator's name; only then hand the payment to the payer's payment service provider. Never follow a redirect to obtain payee data.
+8. Show the signed `name`, the tail of the account, the amount, the payment method and the operator's name; only then prefill the transfer (in a PSP's own app) or hand it to the payer's PSP (on the payer page). Never follow a redirect to obtain payee data.
 
 ## 9. The payer page and payer privacy
 
-The Association runs the payer host, or has it run on its behalf under a written agreement. It holds no merchant data, gives no operator preference, and works the same for every operator in the Directory.
+The payer page is the bridge for payers whose PSP does not read e-QR codes yet; it is needed less as PSPs add support. The Association runs the payer host, or has it run on its behalf under a written agreement. It holds no merchant data, gives no operator preference, and works the same for every operator in the Directory.
 
 It stores no payer data: no IP address, no user agent, no account details. It may count scan events per MID without any payer identifier and sends them only to the operator named in the code, at that operator's `/1/log`.
 
