@@ -1,57 +1,19 @@
 # Changelog — e-QR Technical Specification
 
-All notable changes to the technical specification are documented in this file.
+## v0.1 — 2026-11-18
 
-The format follows a simplified variant of Keep a Changelog and uses semantic versioning
-adapted for specification drafts.
-
-## Signed-URL Carrier Profile v0.3 — addendum to v0.1 (2026-11-16)
+Edited in place to match the scheme in use. The Signed-URL Carrier Profile, published separately on 14–16 November, is folded into the specification and withdrawn.
 
 ### Changed
-- Every code uses the scheme's payer host, listed in the Directory's `payer_hosts`; today `pay.eqrstandard.com`. Operators no longer put a host of their own in a code, so a payer sees the same page whichever operator onboarded the merchant.
-- The signed Operator Directory moves to `https://eqrstandard.com/.well-known/eqr/operators.json` and is signed with the Association's directory key, which no operator holds.
-- Each operator lists one `registry` base address; its keys, revocation list, resolver and scan-count endpoints sit under it. The payer host forwards resolver calls to the operator named in the code.
-
-### Removed
-- Codes in the forms of v0.1 and v0.2. None were issued to merchants in the field.
-
-## Signed-URL Carrier Profile v0.2 — addendum to v0.1 (2026-11-15)
-
-### Changed
-- The signed link now uses the address structure of the specification, section 7.1: `https://<host>/1/m/<OPID>?pi=…&instr=…&mid=…&sig=…`.
-- The signed part carries the version (`ver`) and the payment method (`instr`); a verifier refuses a version or method it does not implement.
-- Claim names follow the specification: `amt` (minor units), `ccy`, `rmt`, `ref`.
-- Payment methods are listed in the Profile; the first and only one is `SCTI`.
-- Codes issued under v0.1 stay valid and are read as version 1, method `SCTI`.
-
-### To be folded into v0.2 of the specification
-- Reconcile section 7.4 (no account details in a point-of-sale code) with the signed part of the Profile.
-
-## Signed-URL Carrier Profile v0.1 — addendum to v0.1 (2026-11-14, replaced)
+- The code (s. 7–8): every code uses a scheme payer host listed in the Directory's `payer_hosts` (today `pay.eqrstandard.com`) and carries the operator's signed part with the payee's verified name and IBAN. Section 7.4 allows account details only inside that signature.
+- Merchant ID (s. 6.3): `CC-OPID-NNNNNNNN`.
+- Operator Directory (s. 10): published at `https://eqrstandard.com/.well-known/eqr/operators.json` and signed with the Association's directory key; adds `payer_hosts` and, per operator, `name`, `country` and `registry` in place of `hosts`.
+- "Association" and "certified" replace "Governance Authority" and "accredited".
 
 ### Added
-- Signed-URL Carrier Profile v0.1 (`spec/e-QR_Signed_URL_Carrier_Profile_v0.1.md`): a camera-scannable https link
-  carrying a signed claim set (MID, verified name, IBAN, optional amount and reference), verified against the signed
-  Operator Directory with no resolver call per payment; operator key and revocation-list endpoints; payer-page privacy rule.
-- Hyphenated merchant identifier form `CC-OPID-NNNNNNNN`.
+- The payer page (s. 5.2), payment methods (s. 7.5), verifying a code (s. 8.6), operator endpoints including the revocation list (s. 9.6) and payer host conformance (s. 12.3).
+- Test vectors for the signed code (s. 13).
 
-### To be folded into v0.2
-- Allow hyphens in the MID (v0.1 section 6.3 says alphanumeric).
-- Use "certified" where v0.1 says "accredited".
-- State the revocation list for both carriers.
-
-## [v0.1] — 2026-01-12
+## v0.1 — 2026-01-12
 
 Initial public consultation draft.
-
-### Added
-- QR carrier profile aligned with EPC MSCT QR standardisation.
-- Proxy (MID) and token-based payload profiles for merchant-presented POI payments.
-- Resolver interface for merchant and transaction resolution.
-- Signed Operator Directory as trust anchor.
-- Mandatory signed resolver responses using JWS (ES256) and JSON canonicalization.
-- Security, parsing, and conformance requirements for payer applications and Operators.
-
-### Notes
-- Draft intended for early technical and security feedback only.
-- Governance, certification, and rollout details are explicitly out of scope.
