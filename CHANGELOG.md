@@ -10,6 +10,7 @@ Edited in place to match the scheme in use. The Signed-URL Carrier Profile, publ
 - Operator Directory (s. 10): published at `https://eqrstandard.com/.well-known/eqr/operators.json` and signed with the Association's directory key; adds `payer_hosts` and, per operator, `name`, `country` and `registry` in place of `hosts`.
 - Directory signature (s. 10.1): the signed part carries the Directory as a JSON object, in no prescribed member order, and payer applications read the Directory from the decoded signed part. The earlier text required the JCS (RFC 8785) form, which the published Directory does not use.
 - "Association" and "certified" replace "Governance Authority" and "accredited".
+- Alignment (s. 1, 3, 4, 7.1, 14): names EN 18184:2025 as the CEN publication of EPC024-22 and maps every code element to it; ISO/IEC 18004, ISO 4217, ISO 3166-1 and ISO 20022 added to the normative references. The code format is unchanged.
 
 ### Added
 - The payer page (s. 5.2), payment methods (s. 7.5), verifying a code (s. 8.6), operator endpoints including the revocation list (s. 9.6) and payer host conformance (s. 12.3).

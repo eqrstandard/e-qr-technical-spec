@@ -3,7 +3,7 @@
 This repository holds the **e-QR Technical Specification**, the interoperability specification of the e-QR payment standard: merchant-presented codes for initiating SEPA Instant Credit Transfers (SCT Inst).
 
 The specification defines:
-- the code: an HTTPS link aligned with EPC MSCT QR-code standardisation, signed by the certified operator that issued it,
+- the code: an HTTPS link in the format of EPC024-22 v2.10, which CEN published as EN 18184:2025, signed by the certified operator that issued it,
 - how a PSP's app, or the scheme payer page, verifies a code without calling the operator,
 - the resolver interface and the operator endpoints, including the revocation list,
 - the signed Operator Directory, and
