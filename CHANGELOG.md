@@ -8,6 +8,7 @@ Edited in place to match the scheme in use. The Signed-URL Carrier Profile, publ
 - The code (s. 7–8): every code uses a scheme payer host listed in the Directory's `payer_hosts` (today `pay.eqrstandard.com`) and carries the operator's signed part with the payee's verified name and IBAN. Section 7.4 allows account details only inside that signature.
 - Merchant ID (s. 6.3): `CC-OPID-NNNNNNNN`.
 - Operator Directory (s. 10): published at `https://eqrstandard.com/.well-known/eqr/operators.json` and signed with the Association's directory key; adds `payer_hosts` and, per operator, `name`, `country` and `registry` in place of `hosts`.
+- Directory signature (s. 10.1): the signed part carries the Directory as a JSON object, in no prescribed member order, and payer applications read the Directory from the decoded signed part. The earlier text required the JCS (RFC 8785) form, which the published Directory does not use.
 - "Association" and "certified" replace "Governance Authority" and "accredited".
 
 ### Added
